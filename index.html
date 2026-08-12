@@ -173,7 +173,7 @@
   .sheet-bg{position:absolute;inset:0;background:rgba(14,29,62,.45);display:none;align-items:flex-end;z-index:50}
   .sheet-bg.show{display:flex}
   .sheet{position:relative;width:100%;background:#fff;border-radius:24px 24px 0 0;padding:22px 22px 26px;max-height:88%;overflow-y:auto;scrollbar-width:none}
-  .sheet-x{position:absolute;top:13px;right:14px;z-index:5}
+  .sheet-x{position:absolute;top:9px;right:9px;z-index:5}
   .sheet::-webkit-scrollbar{display:none}
   .sheet h3{font-family:'Fraunces',serif;font-size:21px;font-weight:400}
   .sheet p{font-size:13px;color:var(--muted);line-height:1.55;margin-top:10px}
@@ -187,15 +187,21 @@
   .opt{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;min-height:104px;box-sizing:border-box;
     margin-bottom:8px;display:flex;gap:12px;align-items:center;transition:all .18s}
   .opt.on{border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,169,46,.22)}
+  .opt.vaultNavy{background:var(--navy);border-color:var(--navy)}
+  .opt.vaultNavy .name{color:#fff}
+  .opt.vaultNavy .desc{color:rgba(255,255,255,.72)}
+  .opt.vaultNavy .impact{color:#9FD8B4}
+  .opt.vaultNavy .recbtn{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
   .opt .name{font-size:14.5px;font-weight:600}
-  .opt .desc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .opt .impact{font-size:12px;font-weight:700;margin-top:5px;color:var(--good);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .opt .rside{flex:none;display:flex;align-items:center}
-  .opt{position:relative} .opt .name{padding-right:56px}
+  .opt .desc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .opt .impact{font-size:12px;font-weight:700;margin-top:5px;color:var(--good)}
+  .opt .rside{flex:none;display:flex;align-items:center;width:108px;justify-content:flex-end}
+  .opt>div:first-child{min-width:0}
+  .opt{position:relative}
   .opt .ptbig{position:absolute;top:10px;right:12px;font-size:10.5px;font-weight:800;color:var(--navy);background:var(--gold);border-radius:8px;
     padding:4px 8px;font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap}
   .recbtn{flex:none;border:1.5px solid var(--navy);background:#fff;color:var(--navy);border-radius:999px;
-    padding:8px 13px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap}
+    padding:9px 0;width:100%;text-align:center;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap}
   .recbtn.on{background:var(--navy);border-color:var(--navy);color:var(--gold-soft)}
 
   /* ---------- COVERAGE DETAIL ---------- */
@@ -401,7 +407,7 @@
     display:flex;align-items:center;justify-content:center}
   .chat-send svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
   /* escape the generic .sheet button (full-width navy) styling */
-  .sheet button.chat-x{width:28px;height:28px;margin-top:0;padding:0;background:var(--cream);color:var(--muted);border-radius:50%;font-size:15px}
+  .sheet button.chat-x{width:22px;height:22px;margin-top:0;padding:0;background:var(--cream);color:var(--muted);border-radius:50%;font-size:11px}
   .sheet button.chat-send{width:42px;height:42px;margin-top:0;padding:0;background:var(--gold);border-radius:50%}
   .sheet button.qchip{width:auto;margin-top:0;padding:9px 14px;background:#fff;color:var(--navy);border:1.5px solid var(--line);border-radius:999px;font-size:12.5px;font-weight:600}
   .vidmock{position:relative;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#1B2C52,#0E1D3E 55%,#25355C);
@@ -552,7 +558,7 @@
           </div>
         </div>
       </div>
-      <div class="foot"><p>Estimates for planning only. AidFinder helps you understand coverage and gaps — it does not sell insurance or guarantee aid.</p></div>
+      <div class="foot"><p>Estimates for planning only. AidFinder helps you understand coverage and gaps — it does not sell insurance or guarantee aid.</p><p style="margin-top:6px;font-size:9px;opacity:.5" id="buildStamp">build Aug 12 · 19:43</p></div>
     </div>
 
     <!-- RISK -->
@@ -664,24 +670,22 @@
           <div style="flex:1"><div class="name" id="nmSavings">Connect your savings</div>
           <div class="desc">Verify your reserves — cash counts against every peril.</div>
           <div class="impact" id="impSavings">$60k reported · not yet verified</div></div>
-          <div class="rside"><span class="ptbig num" id="ptSavings">Earn +4 pts</span><button class="recbtn" data-act="savings">Connect account</button></div></div>
+          <div class="rside"><span class="ptbig num" id="ptSavings">Earn +4 pts</span><button class="recbtn" data-act="savings">Connect</button></div></div>
         <div class="opt" data-rec="harden" style="cursor:pointer">
           <div style="flex:1"><div class="name">Harden your home</div>
           <div class="desc">Roof, openings, defensible space — points per fix.</div>
           <div class="impact" id="impHarden">0 of 3 done</div></div>
-          <div class="rside"><span class="ptbig num" id="ptHarden">Earn +12 pts</span><button class="recbtn" data-act="harden">Open checklist</button></div></div>
-      </div>
-      <div class="vaultrow" id="vaultRow">
-        <div class="vic"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M8 8 V6 a4 4 0 0 1 8 0 V8"/><circle cx="12" cy="14" r="1.6"/></svg></div>
-        <div><div class="vt">Document vault</div><div class="vs">Keep your documents safe and ready — so you can file fast when it matters</div></div>
-        <div class="vn num" id="vaultCount">4/7</div>
-        <div class="chevr"></div>
-      </div>
-            <div class="vaultrow" id="polRow" style="background:#fff;border:1px solid var(--line);color:var(--ink)">
-        <div class="vic" style="background:var(--cream)"><svg viewBox="0 0 24 24" style="stroke:var(--navy)"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h7"/></svg></div>
-        <div><div class="vt">Your policies</div><div class="vs" style="color:var(--muted)">See what each policy pays for — and what it doesn't</div></div>
-        <div class="vn num" id="polRowCount" style="color:var(--navy)">1</div>
-        <div class="chevr" style="border-color:#C9CDD6"></div>
+          <div class="rside"><span class="ptbig num" id="ptHarden">Earn +12 pts</span><button class="recbtn" data-act="harden">Open list</button></div></div>
+        <div class="opt vaultNavy" id="vaultRow" style="cursor:pointer">
+          <div style="flex:1"><div class="name"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:var(--gold);fill:none;stroke-width:2;vertical-align:-1px;margin-right:5px"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10 V7 a4 4 0 0 1 8 0 V10"/></svg>Document vault</div>
+          <div class="desc">Keep your documents safe and ready — file fast when it matters.</div>
+          <div class="impact" id="vaultCount">4 of 12 secured</div></div>
+          <div class="rside"><span class="ptbig num" id="ptVault">Earn +10 pts</span><button class="recbtn" data-noact="1">Open</button></div></div>
+        <div class="opt" id="polRow" style="cursor:pointer">
+          <div style="flex:1"><div class="name">Your policies</div>
+          <div class="desc">See what each policy pays for — and what it doesn't.</div>
+          <div class="impact" id="polRowCount">3 active</div></div>
+          <div class="rside"><span class="ptbig num" id="ptPol">Earn +9 pts</span><button class="recbtn" data-noact="1">Open</button></div></div>
       </div>
       <div class="foot"><p>Points are earned by real action — a policy counts when it's active, hardening counts when the work is done. Nothing is purchased or filed without you.</p></div>
     </div>
@@ -1216,7 +1220,11 @@
         <button id="rlShare" aria-label="Share link" title="Share link" style="width:38px;height:34px;margin:0;padding:0;border-radius:10px;background:#fff;color:var(--navy);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></button>
         <button id="rlExport" aria-label="Export transcript" title="Export transcript" style="width:38px;height:34px;margin:0;padding:0;border-radius:10px;background:#fff;color:var(--navy);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
       </div>
-      <div id="rlMsgs" style="margin-top:10px;max-height:44vh;overflow-y:auto;scrollbar-width:none"></div>
+      <div id="rlSummary" style="margin-top:10px;background:linear-gradient(135deg,#0E1D3E,#1d3059);border-radius:13px;padding:11px 13px;color:#fff">
+        <div style="display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#E8C56E"><span>✦</span><span>AI summary</span><span id="rlSumMeta" style="color:rgba(255,255,255,.55);text-transform:none;letter-spacing:0;font-weight:600"></span></div>
+        <div id="rlSumText" style="font-size:12px;line-height:1.55;margin-top:5px"></div>
+      </div>
+      <div id="rlMsgs" style="margin-top:10px;max-height:60vh;overflow-y:auto;scrollbar-width:none"></div>
       <div style="display:flex;gap:8px;margin-top:12px">
         <input id="rlInput" placeholder="Reply to people in this fire..." style="flex:1;border:1.5px solid var(--line);border-radius:999px;padding:10px 15px;font-family:inherit;font-size:12.5px;outline:none">
         <button id="rlSend" style="width:auto;margin:0;padding:10px 16px;border-radius:999px;background:var(--navy);font-size:12.5px">Send</button>
@@ -1558,7 +1566,7 @@
   const eqHere=()=>state.eqProp===state.prop;
   const eqActive=()=>state.eqStatus==="active"&&eqHere();
   const verifiedTotal=()=>state.accts?state.accts.reduce((t,a)=>t+(a.on?a.amt:0),0):0;
-  const savAmt=()=>state.bankConnected?Math.min(state.setAside,verifiedTotal()):state.reportedSav;
+  const savAmt=()=>state.bankConnected?Math.min(state.setAside,verifiedTotal()):0; // unverified cash earns nothing — points come from evidence, verify to count it
   const DOC_TMPL=[
     {id:"gid",n:"Government ID",d:"Proves identity on every application",done:true,date:"Feb 3, 2026",kind:"file",what:"Driver's license · front and back · PDF"},
     {id:"deed",n:"Property deed",d:"Proves you own what you're claiming",done:true,date:"Feb 3, 2026",kind:"file",what:"Grant deed · PDF, 4 pages"},
@@ -1742,7 +1750,14 @@
     $("spDocs").textContent=nd+"/"+DOCS.length;
     // action cards reflect real states
     const flAdd=Math.min(state.floodAmt,250000);
-    const flPts=Math.round(flAdd/250000*18);
+    const flPts=(function(){
+      const s0=state.floodStatus,p0=state.floodProp;
+      const before=Math.round(computeWeighted().pct*70);
+      state.floodStatus="active";state.floodProp=state.prop;
+      const after=Math.round(computeWeighted().pct*70);
+      state.floodStatus=s0;state.floodProp=p0;
+      return Math.max(0,after-before);
+    })();
     const fHere=floodHere();
     if(state.floodStatus==="none"||!fHere){
       $("impFlood").textContent="+ "+fmt(flAdd)+" covered";
@@ -1757,15 +1772,45 @@
       $("ptFlood").textContent="Earned +"+flPts+" ✓";
       $("ptFlood").style.background="#CBE2D5";
     }
-    $("impSavings").textContent=state.bankConnected?"Verified · "+fmt(verifiedTotal())+" across "+state.accts.filter(a=>a.on).length+" accounts":fmt(state.reportedSav)+" reported · not yet verified";
-    $("ptSavings").textContent=state.bankConnected?"Earned +4 ✓":"Earn +4 pts";
+    $("impSavings").textContent=state.bankConnected?"Verified · "+fmt(verifiedTotal())+" across "+state.accts.filter(a=>a.on).length+" accounts":fmt(state.reportedSav)+" reported · counts once verified";
+    const savG=(function(){
+      // true score delta of verifying reserves — no promises the math won't keep
+      const was=state.bankConnected, wasAccts=state.accts;
+      state.bankConnected=false; const before=Math.round(computeWeighted().pct*70);
+      state.bankConnected=true;
+      if(!state.accts)state.accts=[{on:true,amt:state.setAside}]; // what Plaid will verify
+      const after=Math.round(computeWeighted().pct*70);
+      state.bankConnected=was; state.accts=wasAccts;
+      return Math.max(0,after-before);
+    })();
+    $("ptSavings").textContent=state.bankConnected
+      ?(savG>0?"Earned +"+savG+" \u2713":"Verified \u2713")
+      :(savG>0?"Earn +"+savG+(savG===1?" pt":" pts"):"Verify your cushion");
     $("ptSavings").style.background=state.bankConnected?"#CBE2D5":"var(--gold)";
     $("impHarden").textContent=hc+" of 3 done";
     const hRemain=15-[3,7,11,15][hc];
     $("ptHarden").textContent=hc===3?"Earned +12 ✓":"Earn +"+hRemain+" pts";
     $("ptHarden").style.background=hc===3?"#CBE2D5":"var(--gold)";
-    $("polRowCount").textContent=nPol;
-    $("vaultCount").textContent=nd+"/"+DOCS.length;
+    // vault card: remaining doc points, lights up when complete
+    const docRemain=15-docPts;
+    $("vaultCount").textContent=nd+" of "+DOCS.length+" secured";
+    $("ptVault").textContent=nd>=DOCS.length?"Earned +15 \u2713":"Earn +"+docRemain+(docRemain===1?" pt":" pts");
+    $("ptVault").style.background=nd>=DOCS.length?"#CBE2D5":"var(--gold)";
+    $("vaultRow").classList.toggle("on",nd>=DOCS.length);
+    // policies card: real gain from the add-ons still available here
+    const polGain=(function(){
+      const f0=state.floodStatus,fp=state.floodProp,e0=state.eqStatus,ep=state.eqProp;
+      const before=Math.round(computeWeighted().pct*70);
+      if(!(state.floodStatus==="active"&&floodHere())){state.floodStatus="active";state.floodProp=state.prop;}
+      if(!(state.eqStatus==="active"&&eqHere())){state.eqStatus="active";state.eqProp=state.prop;}
+      const after=Math.round(computeWeighted().pct*70);
+      state.floodStatus=f0;state.floodProp=fp;state.eqStatus=e0;state.eqProp=ep;
+      return Math.max(0,after-before);
+    })();
+    $("polRowCount").textContent=nPol+" active";
+    $("ptPol").textContent=polGain>0?"Earn +"+polGain+(polGain===1?" pt":" pts"):"All added \u2713";
+    $("ptPol").style.background=polGain>0?"var(--gold)":"#CBE2D5";
+    $("polRow").classList.toggle("on",polGain===0);
     $("vaultBig").textContent=nd+" of "+DOCS.length;
     $("vaultBar").style.width=Math.round(nd/DOCS.length*100)+"%";
     // flood option irrelevant for wildfire
@@ -1839,10 +1884,11 @@
   })();
   let currentView="home";
   // ---- score roll-up: slow start, fast middle, ease into the new number ----
-  let dispReady=null, readyPend=null, readyAnimId=0;
+  let dispReady=null, readyPend=null, readyAnimId=0, readySnap=false;
   function setReadyDisplay(target){
-    if(dispReady===null){
-      dispReady=target;
+    if(dispReady===null||readySnap){
+      readySnap=false;
+      dispReady=target; readyPend=null; readyAnimId++;
       $("homeReady").textContent=target; $("rhNum").textContent=target;
       return;
     }
@@ -1852,27 +1898,48 @@
     }
     readyPend={from:dispReady,to:target};
     dispReady=target;
-    if(currentView==="home"||currentView==="ready") playReadyAnim();
-    // otherwise keep the old number on screen; go() will play it on arrival
+    const sheetUp=!!document.querySelector(".sheet-bg.show");
+    if((currentView==="home"||currentView==="ready")&&!sheetUp) playReadyAnim();
+    // otherwise hold — plays when the user can actually see the score
   }
+  // release a held score animation the moment the last covering sheet closes
+  (function(){
+    const check=()=>{
+      if(readyPend&&(currentView==="home"||currentView==="ready")&&!document.querySelector(".sheet-bg.show"))
+        setTimeout(playReadyAnim,280);
+    };
+    const mo=new MutationObserver(check);
+    document.querySelectorAll(".sheet-bg").forEach(s=>mo.observe(s,{attributes:true,attributeFilter:["class"]}));
+  })();
   function playReadyAnim(){
     const p=readyPend; if(!p)return; readyPend=null;
     const els=[$("homeReady"),$("rhNum")].filter(Boolean);
     const my=++readyAnimId;
-    const D=1400, t0=performance.now();
-    // little settle "dip" as the old digits drop away
-    els.forEach(e=>{e.style.transition="transform .18s ease";e.style.transform="translateY(5px)";
-      setTimeout(()=>{e.style.transform="translateY(0)";},180);});
-    const ease=t=>t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2; // easeInOutCubic: drops in, speeds up, glides to rest
-    (function tick(now){
+    const dir=p.to>p.from?1:-1, steps=Math.abs(p.to-p.from);
+    // counter: every integer ticks on screen — quick off the line, soft landing
+    const D=Math.min(1800, 320+steps*130);
+    const easeOut=t=>1-Math.pow(1-t,2.2);
+    let n=1;
+    (function tick(){
       if(my!==readyAnimId)return;
-      const t=Math.min(1,(now-t0)/D);
-      const v=Math.round(p.from+(p.to-p.from)*ease(t));
-      els.forEach(e=>e.textContent=v);
-      if(t<1)requestAnimationFrame(tick);
-      else els.forEach(e=>e.textContent=p.to);
-    })(performance.now());
-    if(p.to>p.from)dropConfetti(Math.min(120,40+(p.to-p.from)*8));
+      const v=p.from+dir*n;
+      els.forEach(e=>{
+        e.textContent=v;
+        e.style.transition="transform .09s ease";
+        e.style.transform="translateY(-2px)";
+        setTimeout(()=>{e.style.transform="translateY(0)";},90);
+      });
+      if(n<steps){
+        const delay=(easeOut(n/steps)-easeOut((n-1)/steps))*D;
+        n++;
+        setTimeout(tick,Math.max(50,delay));
+      } else {
+        // landing pop
+        els.forEach(e=>{e.style.transition="transform .16s ease";e.style.transform="scale(1.12)";
+          setTimeout(()=>{e.style.transform="scale(1)";},160);});
+      }
+    })();
+    if(p.to-p.from>=3)dropConfetti(Math.min(120,40+(p.to-p.from)*8)); // small gains roll quietly; big wins celebrate
   }
   // ---- confetti from the top of the page ----
   function dropConfetti(n){
@@ -1914,7 +1981,7 @@
   function go(name){
     if(name!==currentView) state.prevView=currentView;
     currentView=name;
-    if(readyPend&&(name==="home"||name==="ready"))setTimeout(playReadyAnim,300);
+    if(readyPend&&(name==="home"||name==="ready")&&!document.querySelector(".sheet-bg.show"))setTimeout(playReadyAnim,300);
     document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
     $(tabs[name]).classList.add("on");
     const navName = (name==="coverage"||name==="vault") ? "ready" : name;
@@ -1956,12 +2023,12 @@
         btn.classList.toggle("on",fh&&state.floodStatus==="active");
         btn.closest(".opt").classList.toggle("on",fh&&state.floodStatus!=="none");
       } else if(act==="savings"){
-        btn.textContent=state.bankConnected?"Connected ✓":"Connect account";
+        btn.textContent=state.bankConnected?"Connected ✓":"Connect";
         btn.classList.toggle("on",state.bankConnected);
         btn.closest(".opt").classList.toggle("on",state.bankConnected);
       } else if(act==="harden"){
         const n=hardenCount();
-        btn.textContent=n===3?"All done ✓":"Open checklist";
+        btn.textContent=n===3?"All done ✓":"Open list";
         btn.classList.toggle("on",n===3);
         btn.closest(".opt").classList.toggle("on",n>0);
       }
@@ -2245,6 +2312,8 @@
   buildDocs();
   $("vaultRow").addEventListener("click",()=>go("vault"));
   $("polRow").addEventListener("click",()=>go("coverage"));
+  // vaultBig on the vault page still expects "N of M"
+
   $("vaultBack").addEventListener("click",()=>{
     const vf=state.vaultFocus;
     if(vf&&vf.from==="sba"){
@@ -2528,6 +2597,7 @@
       el.addEventListener("click",()=>{
         state.prop=i; state.sqft=p.sqft; state.ppsf=p.ppsf;
         DOCS=PROP_DOCS[state.prop];
+        readySnap=true; // context switch, not an achievement — no roll, no confetti
         $("propBg").classList.remove("show");
         buildProps(); buildDocs(); render();
       });
@@ -3642,7 +3712,7 @@
     if(!on){panel.style.display="none";return;}
     panel.style.display="block";
     const declChip=R.decl==="pending"
-      ? '<span class="pbadge" id="recDecl" style="background:#FBF3DF;color:#8a6a12;border-color:#F0DFAE;cursor:pointer">Declaration: pending — tap to simulate</span>'
+      ? '<span class="pbadge" id="recDecl" style="background:#FBF3DF;color:#8a6a12;border-color:#F0DFAE;cursor:pointer">Not declared — we\u2019re watching</span>'
       : R.decl==="on"
       ? '<span class="pbadge" id="recDecl" style="background:#EAF3EE;color:#1E5A41;border-color:#CBE2D5;cursor:pointer">Declared ✓ · FEMA & SBA due Oct 10</span>'
       : '<span class="pbadge" id="recDecl" style="background:#F6E9E4;color:#B4540A;border-color:#EDD2C6;cursor:pointer">Not declared — insurance, state & IRS paths still open</span>';
@@ -3759,7 +3829,7 @@
     if(hl)hl.addEventListener("click",()=>{go("ready");});
     if(dc) dc.addEventListener("click",e=>{
       e.stopPropagation();
-      state.recovery.decl=state.recovery.decl==="pending"?"on":state.recovery.decl==="on"?"off":"pending";
+      state.recovery.decl=state.recovery.decl==="on"?"pending":"on";
       if(state.recovery.decl==="on"){REC_STEPS[5].st="next";REC_STEPS[6].st="todo";recOpenStep=5;}
       renderRecovery();
     });
@@ -3783,7 +3853,7 @@
         sp.textContent=on?"Money":"Readiness";
         sv.innerHTML=on
           ?'<circle cx="12" cy="12" r="8.5"/><path d="M12 6.8 V17.2"/><path d="M14.6 9.3 C14.6 8.2 13.4 7.6 12 7.6 C10.6 7.6 9.4 8.3 9.4 9.5 C9.4 12.2 14.6 11.2 14.6 14 C14.6 15.3 13.4 16.1 12 16.1 C10.6 16.1 9.4 15.4 9.4 14.2"/>'
-          :'<path d="M20 13 A 8 8 0 1 0 12 21"/><path d="M15 14 L20 9 L21 12 L24 12" transform="scale(0.85) translate(1,3)"/><path d="M12 13 L16 9"/>';
+          :'<path d="M 5.2 17.5 A 8.6 8.6 0 1 1 18.8 17.5"/><path d="M 12 14.5 L 16.6 9.2"/><circle cx="12" cy="14.5" r="1.1"/>';
       }
     });
     if(typeof updateAvBadge==="function")try{updateAvBadge();}catch(e){}
@@ -4094,15 +4164,24 @@
       +labels
       +'<div id="stackDetail" style="overflow:hidden;transition:max-height .35s ease,opacity .3s ease;max-height:'+(open?"560px":"0")+';opacity:'+(open?1:0)+'">'+detail+'</div>'
       +'<div id="stackHint" style="font-size:10.5px;color:var(--muted);margin-top:8px;line-height:1.5">'+(open?"Tap to collapse \u2039":"Money locked in vs. what still needs a source. Tap for the source-by-source math \u203a")+'</div>'
-      +'</div></div>';
+      +'</div>'
+      +(function(){
+        const sel=R.m.navSel||"mSecAct";
+        const chip=(sec,label)=>{
+          const on=sec===sel;
+          return '<button class="mNav" data-sec="'+sec+'" style="flex:1;border:1.5px solid '+(on?'var(--navy)':'var(--line)')+';background:'+(on?'var(--navy)':'#fff')+';color:'+(on?'#fff':'var(--ink)')+';font-family:inherit;font-size:11px;font-weight:700;border-radius:999px;padding:8px 4px;cursor:pointer;transition:background .18s,color .18s,border-color .18s">'+label+'</button>';
+        };
+        return '<div style="display:flex;gap:7px;margin-top:10px">'+chip("mSecAct","To do")+chip("mSecMon","In motion")+chip("mSecNew","New programs")+'</div>';
+      })()
+      +'</div>';
 
     // ---- status chips ----
     const clFiled=R.m.claims.filter(c=>c.st>=1).length, clPaid=R.m.claims.filter(c=>c.st===2).length;
     const claimChip=clPaid===2?["Paid $638k \u2713","#EAF3EE","#1E5A41","#CBE2D5"]:clFiled===0?["2 claims \u00b7 not filed","#F6E9E4","#B4540A","#EDD2C6"]:[clFiled+" of 2 filed","#E4F6CE","#3E7A1E","#C8E9A0"];
-    const femaChip=!declared?["Waiting on declaration","#FBF3DF","#8a6a12","#F0DFAE"]:[["Not started \u00b7 due Oct 10","#F6E9E4","#B4540A","#EDD2C6"],["Submitted","#EDEFF3","#4A5468","#D6DAE2"],["Approved $43.6k \u2713","#EAF3EE","#1E5A41","#CBE2D5"]][R.m.fema];
+    const femaChip=!declared?["Not declared \u2014 we\u2019re watching","#FBF3DF","#8a6a12","#F0DFAE"]:[["Not started \u00b7 due Oct 10","#F6E9E4","#B4540A","#EDD2C6"],["Submitted","#EDEFF3","#4A5468","#D6DAE2"],["Approved $43.6k \u2713","#EAF3EE","#1E5A41","#CBE2D5"]][R.m.fema];
     const sbaStates=[["Optional \u00b7 debt \u00b7 due Oct 10","#FBF3DF","#8a6a12","#F0DFAE"],["Applied","#EDEFF3","#4A5468","#D6DAE2"],["Approved $500k loan","#EAF3EE","#1E5A41","#CBE2D5"]];
     const sbaStatesOff=[["Open via SBA agency declaration \u00b7 debt","#FBF3DF","#8a6a12","#F0DFAE"],["Applied","#EDEFF3","#4A5468","#D6DAE2"],["Approved $500k loan","#EAF3EE","#1E5A41","#CBE2D5"]];
-    const sbaChip=(R.decl==="pending")?["Likely \u2014 SBA\u2019s own declaration has a lower bar","#FBF3DF","#8a6a12","#F0DFAE"]:(R.decl==="off")?sbaStatesOff[R.m.sba]:sbaStates[R.m.sba];
+    const sbaChip=(R.decl==="pending")?["Likely","#FBF3DF","#8a6a12","#F0DFAE"]:(R.decl==="off")?sbaStatesOff[R.m.sba]:sbaStates[R.m.sba];
     const irsChip=apprDone?["\u2248$189k \u00b7 package ready","#EAF3EE","#1E5A41","#CBE2D5"]:["\u2248$189k \u00b7 needs appraisal","#EDEFF3","#4A5468","#D6DAE2"];
 
     // ---- drill-in bodies (layer 2) ----
@@ -4112,7 +4191,7 @@
 
     function insBody(){
       const CL=R.m.claims;
-      let h='<div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5">Two claims, two carriers, two clocks \u2014 each pays separately. File online 24/7, or your broker can file for you.</div>';
+      let h='<div style="font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.55">Two claims, two carriers, two clocks \u2014 each pays separately. File online 24/7, or your broker can file for you.</div>';
       CL.forEach((c,ci)=>{
         const copen=R.m.copen===ci;
         const stChip=[["Not filed \u00b7 action needed","#F6E9E4","#B4540A","#EDD2C6"],["Filed"+(c.num?" \u00b7 #"+c.num:" \u00b7 number pending"),"#E4F6CE","#3E7A1E","#C8E9A0"],[c.paid+" \u2713","#EAF3EE","#1E5A41","#CBE2D5"]][c.st];
@@ -4143,31 +4222,28 @@
     }
 
     function femaBody(){
-      let h='<div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5">FEMA Individual Assistance is stabilization money \u2014 capped around <b class="num">$43.6k</b>, only for needs insurance doesn\u2019t cover, and only when a presidential declaration is issued.</div>';
+      let h='<div style="font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.55">Up to <b class="num">$43.6k</b> if approved \u2014 never guaranteed \u2014 for what insurance doesn\u2019t cover.</div>';
       if(!declared){
-        h+='<div style="'+mini+'"><div style="font-size:12px;font-weight:700;color:#B4540A">Presidential declaration pending</div><div style="font-size:11px;color:var(--muted);margin-top:3px;line-height:1.5">We\'re watching \u2014 you\'ll get an alert the second it flips, and your application is already pre-filled from your vault. You review and submit; deadlines start at declaration.</div></div>';
+        h+='<div style="'+mini+'"><div style="font-size:12px;font-weight:700;color:#B4540A">Not declared yet</div><div style="font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5">Your application is already pre-filled from your vault \u2014 we alert you the second the declaration lands.</div></div>';
       } else {
-        h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:9px"><span class="pbadge" style="background:#FBF3DF;color:#8a6a12;border-color:#F0DFAE">Due Oct 10 \u00b7 59 days left</span><span style="font-size:10.5px;color:var(--muted)">determination \u2248 10 days</span></div>';
+        h+='<div style="margin-top:9px"><span class="pbadge" style="background:#FBF3DF;color:#8a6a12;border-color:#F0DFAE">Due Oct 10 \u00b7 59 days left</span></div>';
         if(R.m.fema===0)h+='<button id="mFemaReview" style="'+btnP+'">Watch AI fill it \u2014 then review &amp; submit</button>';
-        else if(R.m.fema===1)h+='<div style="font-size:11px;color:var(--muted);margin-top:9px">Submitted \u2014 we track the determination and alert you.</div><button class="mAdv" data-k="fema" style="'+btnS+'">Simulate: approved</button>';
-        else h+='<div style="font-size:11px;color:#1E5A41;margin-top:9px;font-weight:700">Approved $43.6k \u2014 housing assistance, deposited.</div>';
+        else if(R.m.fema===1)h+='<div style="font-size:12px;color:var(--muted);margin-top:9px">Submitted \u2014 determination \u2248 10 days; we track it and alert you.</div><button class="mAdv" data-k="fema" style="'+btnS+'">Simulate: approved</button>';
+        else h+='<div style="font-size:12px;color:#1E5A41;margin-top:9px;font-weight:700">Approved $43.6k \u2014 housing assistance, deposited.</div>';
       }
-      h+='<div style="'+mini+'"><div style="font-size:11px;font-weight:700">What FEMA IA can cover \u2014 if approved, never guaranteed</div><div style="font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.5">Housing up to $43,600 \u00b7 Other Needs (medical, vehicle, essential items) \u00b7 not a substitute for insurance \u2014 it fills gaps insurance doesn\'t.</div></div>';
-      h+='<div style="font-size:10.5px;color:var(--muted);margin-top:8px">Denied \u2260 final \u2014 there\'s a 60-day appeal window, and we draft the appeal from your vault.</div>';
+      h+='<div style="font-size:11px;color:var(--muted);margin-top:9px;line-height:1.5">Denied \u2260 final \u2014 60-day appeal, drafted from your vault.</div>';
       return h;
     }
     function sbaBody(){
-      let h='<div style="background:#EDEFF3;border:1px solid #D6DAE2;border-radius:12px;padding:10px 12px;margin-top:9px"><div style="font-size:12px;font-weight:700;color:#4A5468">This is a loan you repay \u2014 never counted with your grants</div></div>';
-      h+='<div style="'+mini+'">'+[["Up to $500k","home rebuild \u00b7 plus contents"],["\u2248 2.5% fixed","30-yr terms available"],["First 12 months","payments can defer"]].map(r=>'<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:11px"><span style="color:var(--muted)">'+r[1]+'</span><b class="num">'+r[0]+'</b></div>').join("")+'</div>';
-      h+='<div style="font-size:11px;color:var(--muted);margin-top:9px;line-height:1.5">Borrow only the gap: your unmet number is <b class="num">'+fmt(gapAmt)+'</b>. Approval doesn\'t obligate you \u2014 you can accept some, all, or none.</div>';
+      let h='';
+      h+='<div style="'+mini+'">'+[["Up to $500k","home rebuild \u00b7 plus contents"],["\u2248 2.5% fixed","30-yr terms available"],["First 12 months","payments can defer"]].map(r=>'<div style="display:flex;justify-content:space-between;padding:5px 0;font-size:12px"><span style="color:var(--muted)">'+r[1]+'</span><b class="num">'+r[0]+'</b></div>').join("")+'</div>';
+      h+='<div style="font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5">Borrow only your gap \u2014 <b class="num">'+fmt(gapAmt)+'</b> \u2014 accept some, all, or none.</div>';
       h+='<div class="sbVidCard" style="position:relative;border-radius:15px;padding:2.5px;background:linear-gradient(120deg,#E0A92E,#5B7BB5,#8FD1A8,#E0A92E);background-size:300% 300%;animation:aiShift 3.5s ease infinite;box-shadow:0 0 14px rgba(224,169,46,.25);margin-top:9px;cursor:pointer">'
         +'<div style="background:linear-gradient(135deg,#0E1D3E,#1d3059);border-radius:13px;padding:11px 13px;display:flex;align-items:center;gap:10px">'
         +'<span style="width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 1.4s infinite;flex:none"></span>'
         +'<div style="flex:1"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:11px">\u2726</span><span style="font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#E8C56E">AI agent</span></div>'
-        +'<div style="font-size:12px;font-weight:700;color:#fff;line-height:1.35;margin-top:2px">Your application is prepared \u2014 review &amp; submit</div>'
-        +'<div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:1px">Loan amount pre-set to your gap \u2014 you can change or decline anything</div></div>'
-        +'<span class="chevr" style="border-color:rgba(255,255,255,.5)"></span></div></div>';
-      if(R.decl==="pending")h+='<div style="font-size:10.5px;color:#8a6a12;margin-top:8px;font-weight:700">SBA\'s own declaration is likely \u2014 lower bar than FEMA\'s. Your application is ready; submit unlocks the moment it lands.</div>';
+        +'<div style="font-size:12.5px;font-weight:700;color:#fff;line-height:1.35;margin-top:2px">Your application is prepared \u2014 review &amp; submit</div></div>'        +'<span class="chevr" style="border-color:rgba(255,255,255,.5)"></span></div></div>';
+      if(R.decl==="pending")h+='<div style="font-size:12px;color:#8a6a12;margin-top:8px;font-weight:700">Ready to submit the moment SBA\'s declaration lands \u2014 likely.</div>';
       else if(R.m.sba===1)h+='<div style="font-size:11px;color:var(--muted);margin-top:9px">Applied \u2014 decision typically 2\u20133 weeks.</div><button class="mAdv" data-k="sba" style="'+btnS+'">Simulate: approved</button>';
       else h+='<div style="font-size:11px;color:#1E5A41;margin-top:9px;font-weight:700">Approved $500k \u2014 accept any portion, or none.</div>';
       return h;
@@ -4204,10 +4280,10 @@
         const monRows=rows.map((r,i)=>({r:r,i:i})).filter(x=>!act[x.r[0]][0]);
         const rowHtml=x=>{
           const r=x.r,i=x.i,open=R.m.open===i,a=act[r[0]];
-          return '<div class="mRow" data-i="'+i+'" style="padding:11px 0;border-bottom:1px solid #F4F1EA;cursor:pointer">'
-            +'<div style="display:flex;align-items:center;gap:8px"><div style="flex:1"><div style="font-size:12.5px;font-weight:700">'+r[1]+'</div><div style="font-size:10.5px;color:var(--muted);margin-top:1px">'+r[2]+'</div></div><span class="chevr" style="border-color:#C9CDD6;transform:rotate('+(open?'-135':'45')+'deg);margin-top:'+(open?'4':'-2')+'px"></span></div>'
-            +(a[0]&&a[1]?'<div style="font-size:10.5px;font-weight:700;color:#B4540A;margin-top:5px">\u25b8 '+a[1]+'</div>':'')
-            +'<div style="margin-top:6px"><span class="mChip pbadge" data-k="'+r[0]+'" style="background:'+r[3][1]+';color:'+r[3][2]+';border-color:'+r[3][3]+'">'+r[3][0]+'</span></div>'
+          return '<div class="mRow" data-i="'+i+'" style="padding:13px 0;border-bottom:1px solid #F4F1EA;cursor:pointer">'
+            +'<div style="display:flex;align-items:center;gap:8px"><div style="flex:1"><div style="font-size:15px;font-weight:700">'+r[1]+'</div>'+(open?'<div style="font-size:12px;color:var(--muted);margin-top:2px">'+r[2]+'</div>':'')+'</div><span class="chevr" style="border-color:#C9CDD6;transform:rotate('+(open?'-135':'45')+'deg);margin-top:'+(open?'4':'-2')+'px"></span></div>'
+            +(open&&a[0]&&a[1]?'<div style="font-size:12px;font-weight:700;color:#B4540A;margin-top:6px">\u25b8 '+a[1]+'</div>':'')
+            +'<div style="margin-top:7px"><span class="mChip pbadge" data-k="'+r[0]+'" style="background:'+r[3][1]+';color:'+r[3][2]+';border-color:'+r[3][3]+';font-size:10.5px">'+r[3][0]+'</span></div>'
             +(open?'<div style="animation:stepDown .22s ease">'+r[4]()+'</div>':'')
             +'</div>';
         };
@@ -4226,17 +4302,16 @@
         const PRG=REC_PRG;
         let g='<div id="mSecNew" style="font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:2px 2px 6px;scroll-margin-top:210px">Programs coming online</div>';
         g+='<div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:2px 16px;margin-bottom:12px">';
-        g+='<div style="font-size:11px;color:var(--muted);padding:10px 0 2px;line-height:1.5">Help arrives in waves \u2014 we watch every switch and message you when one flips for your address. Tap any program for the full picture.</div>';
+        g+='<div style="font-size:12px;color:var(--muted);padding:10px 0 2px;line-height:1.5">We watch every switch \u2014 tap a program for the full picture.</div>';
         PRG.forEach((p,pi)=>{
           const lv=LV[p.lv];
           const ty=TY[p.ty];
           const active=day>=p.open;
           const soon=!active&&(p.open-day)<=14;
           const st=active?["Active now","#EAF3EE","#1E5A41","#CBE2D5"]:soon?["Opens soon \u00b7 watching","#FBF3DF","#8a6a12","#F0DFAE"]:["~"+(p.open<60?Math.max(1,Math.round((p.open-day)/7))+" wks":Math.round((p.open-day)/30)+" mos")+" \u00b7 we\u2019ll alert you","#EDEFF3","#4A5468","#D6DAE2"];
-          g+='<div class="pgRow" data-k="p" data-i="'+pi+'" style="padding:11px 0;border-bottom:1px solid #F4F1EA;cursor:pointer">'
-            +'<div style="display:flex;align-items:baseline;gap:10px"><span style="flex:1;font-size:12.5px;font-weight:700;line-height:1.35">'+p.n+'</span>'+(p.amt?'<b class="num" style="font-size:12.5px;flex:none">'+p.amt+'</b>':'')+'<span class="chevr" style="border-color:#C9CDD6;flex:none;align-self:center"></span></div>'
-            +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:5px"><span class="pbadge" style="background:'+lv[2]+';color:'+lv[1]+';border-color:'+lv[2]+'">'+lv[0]+'</span><span class="pbadge" style="background:'+ty[1]+';color:'+ty[2]+';border-color:'+ty[3]+'">'+ty[0]+'</span><span class="pbadge" style="background:'+st[1]+';color:'+st[2]+';border-color:'+st[3]+'">'+st[0]+'</span></div>'
-            +'<div style="font-size:11px;color:var(--muted);line-height:1.5;margin-top:5px">'+p.d+'</div>'
+          g+='<div class="pgRow" data-k="p" data-i="'+pi+'" style="padding:13px 0;border-bottom:1px solid #F4F1EA;cursor:pointer">'
+            +'<div style="display:flex;align-items:baseline;gap:10px"><span style="flex:1;font-size:15px;font-weight:700;line-height:1.35">'+p.n+'</span>'+(p.amt?'<b class="num" style="font-size:13px;flex:none">'+p.amt+'</b>':'')+'<span class="chevr" style="border-color:#C9CDD6;flex:none;align-self:center"></span></div>'
+            +'<div style="margin-top:6px"><span class="pbadge" style="background:'+st[1]+';color:'+st[2]+';border-color:'+st[3]+'">'+st[0]+'</span></div>'
             +'</div>';
         });
         g+='</div>';
@@ -4344,7 +4419,9 @@
       const c=R.m.claims[+el.dataset.ci];
       c.st=2; if(!c.num)c.num=(c.k==="fair"?"LAX-2400118":"MC-887201");
       R.m.claim=R.m.claims[0].st;
+      if(R.decl==="pending")R.decl="on";
       syncRecSteps();
+      renderRecovery();
       renderMoney();
     }));
   }
@@ -4369,8 +4446,10 @@
       c.st=Math.max(c.st,1);
       c.num=($("claimNum").value||"").trim();
       R.m.claim=R.m.claims[0].st;
+      if(R.decl==="pending"&&R.m.claims.some(x=>x.st>=1))R.decl="on";
       closeClaim();
       syncRecSteps();
+      renderRecovery();
       renderMoney();
     });
   })();
@@ -4670,14 +4749,19 @@
   // ---- recovery live threads ----
   const LIVE_THREADS=[
     {t:"Adjuster came today - what should I have had ready?",who:"Dana R. \u00b7 Marquez Knolls",ago:"12 min",replies:23,hot:true,
+     sum:"Adjusters often scope fast and miss interior smoke damage. The thread's consensus: get the itemized scope in writing, compare it line-by-line against your contractor's estimate, and file a supplement for anything missed \u2014 one survivor recovered $180k that way.",
      msgs:[["Dana R.","He was here 40 minutes and only photographed the exterior. Is that normal?"],["Marcus T. \u00b7 survivor '18","Ask for the itemized scope in writing. Mine missed all the smoke damage on the first pass - the supplement got me another $180k."],["AidFinder team","Your contractor's itemized estimate is the counterweight - request the adjuster's scope, compare line by line, and file a supplement for anything missed."]]},
     {t:"FAIR Plan ALE - anyone actually been paid yet?",who:"Priya S. \u00b7 Via de la Paz",ago:"31 min",replies:41,hot:true,
+     sum:"ALE payouts are landing but slowly \u2014 roughly 2\u20133 weeks in review is common right now. What's working: submit hotel and meal receipts weekly instead of one big batch, and keep every receipt in your vault so resubmission is instant.",
      msgs:[["Priya S.","Hotel bills piling up. FAIR says 'in review' for 2 weeks."],["Jim K.","Paid on day 19. Send receipts weekly, not in one batch - that's what unstuck mine."]]},
     {t:"Army Corps debris removal - opt-in deadline is real",who:"AidFinder team",ago:"1 hr",replies:58,pinned:true,
+     sum:"Right of Entry forms are open for Palisades parcels. Opting in gets free lot clearance; opting out means your insurance debris coverage pays first. The deadline is firm \u2014 today's update lists it with DRC locations.",
      msgs:[["AidFinder team","Right of Entry forms are open for Palisades parcels. Opting in = free lot clearance; opting out means your insurance debris coverage pays first. Deadline and DRC locations in today's update."]]},
     {t:"Hygienist found VOCs - house looked completely fine",who:"Elena M. \u00b7 El Medio Bluffs",ago:"2 hrs",replies:34,
+     sum:"Several standing homes are failing air-quality tests despite looking untouched. The takeaway: a surviving home isn't a safe home until a hygienist tests it \u2014 request one from the Damage page before moving anything back in.",
      msgs:[["Elena M.","Passed the eye test, failed the lab test. Full remediation required. TEST YOUR HOUSE."],["AidFinder team","This is why the hygienist step exists - a surviving home isn't a safe home until it's tested. Request one from the Damage page."]]},
     {t:"Which contractors are NOT price-gouging right now",who:"Sam W. \u00b7 Castellammare",ago:"3 hrs",replies:67,
+     sum:"Rebuild quotes are ranging $580\u2013$1,100/sqft for comparable work. Protect yourself: verify CSLB licenses, use the verified-pro list to screen for gouging complaints, and never pay big deposits \u2014 CA caps them at $1k or 10%.",
      msgs:[["Sam W.","Got quotes at $580, $710, and $1,100/sqft this week for the same rebuild."],["AidFinder team","CSLB license check + our verified-pro list filters for post-disaster pricing complaints. Never pay large deposits up front - deposits are capped at $1k or 10% in CA."]]}
   ];
   function renderLive(){
@@ -4722,6 +4806,9 @@
   function openThread(i){
     const th=LIVE_THREADS[i];
     $("rlTitle").textContent=th.t;
+    $("rlSumText").textContent=th.sum||"";
+    $("rlSummary").style.display=th.sum?"block":"none";
+    $("rlSumMeta").textContent=th.sum?"\u00b7 from "+th.replies+" replies":"";
     $("rlMsgs").innerHTML=th.msgs.map(function(m){return '<div style="padding:9px 0;border-bottom:1px solid #F4F1EA"><div style="font-size:10.5px;font-weight:700;color:'+(m[0].indexOf("AidFinder")>=0?"#8a6a12":"var(--muted)")+'">'+m[0]+(m[0].indexOf("survivor")>=0?' <span class="pbadge" style="background:#EAF3EE;color:#1E5A41;border-color:#CBE2D5">Been through it</span>':'')+'</div><div style="font-size:12.5px;line-height:1.55;margin-top:2px">'+m[1]+'</div></div>';}).join("");
     $("rlSend").onclick=function(){
       const v=$("rlInput").value.trim(); if(!v) return;
