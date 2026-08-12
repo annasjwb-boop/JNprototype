@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>AidFinder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
@@ -12,12 +12,17 @@
     --ink:#101828; --muted:#5B6472; --line:#E5E1D8; --good:#2E7D5B; --warn:#B4540A;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:#E9E6DF;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);
-    display:flex;justify-content:center;padding:32px 16px}
-  .phone{width:100%;max-width:400px;height:820px;background:var(--cream);border:1px solid var(--line);
-    border-radius:32px;box-shadow:0 24px 60px rgba(14,29,62,.16);overflow:hidden;position:relative;
+  html,body{height:100%}
+  body{background:var(--cream);font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);
+    display:flex;justify-content:center;padding:0}
+  .phone{width:100%;max-width:400px;height:100dvh;background:var(--cream);border:0;
+    border-radius:0;box-shadow:none;overflow:hidden;position:relative;
     display:flex;flex-direction:column}
-  .screen{flex:1;overflow-y:auto;padding-bottom:110px;scrollbar-width:none}
+  @media (min-width:501px){
+    body{padding:32px 16px;align-items:center}
+    .phone{height:820px;max-height:calc(100dvh - 64px);border-radius:32px}
+  }
+  .screen{flex:1;overflow-y:auto;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px));scrollbar-width:none}
   .screen::-webkit-scrollbar{display:none}
   .tab{display:none}
   .tab.on{display:block}
@@ -29,7 +34,7 @@
   .avatar{cursor:pointer;position:relative}
   .avBadge{position:absolute;top:-4px;right:-5px;min-width:16px;height:16px;border-radius:9px;background:#C64B33;color:#fff;font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid var(--cream);pointer-events:none}
   .avmenu{position:absolute;top:58px;right:18px;background:#fff;border:1px solid var(--line);border-radius:16px;
-    box-shadow:0 16px 40px rgba(14,29,62,.18);min-width:210px;padding:6px;display:none;z-index:9}
+    box-shadow:0 16px 40px rgba(14,29,62,.18);min-width:210px;padding:6px;display:none;z-index:60}
   .avmenu.show{display:block}
   .avmenu .amh{padding:10px 12px 8px;border-bottom:1px solid #F0EDE6;margin-bottom:4px}
   .avmenu .amn{font-size:13.5px;font-weight:700}
@@ -133,16 +138,16 @@
     border-radius:999px;padding:5px 10px;font-variant-numeric:tabular-nums}
   .raiserow .rn{font-size:13.5px;font-weight:600;flex:1}
   .raiserow .chevr2{width:8px;height:8px;border-right:2px solid #C9CDD6;border-top:2px solid #C9CDD6;transform:rotate(45deg);flex:none}
-  .dome-wrap{display:flex;flex-direction:column;align-items:center;padding:22px 22px 0;position:relative}
+  .dome-wrap{display:flex;flex-direction:column;align-items:center;padding:22px 22px 0;position:relative;margin-bottom:26px}
   .dome{width:232px;height:124px;overflow:visible}
-  .dome-center{position:absolute;top:66px;left:0;right:0;text-align:center;pointer-events:none}
+  .dome-center{position:absolute;top:84px;left:0;right:0;text-align:center;pointer-events:none}
   .dome-num{font-family:'Fraunces',serif;font-size:32px;line-height:1;display:inline-flex;align-items:center;gap:6px}
-  .dome-label{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);margin:2px auto 0;max-width:230px;line-height:1.4;pointer-events:auto;white-space:nowrap}
+  .dome-label{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);margin:9px auto 0;max-width:230px;line-height:1.4;pointer-events:auto;white-space:nowrap}
   .info-i{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;
     background:transparent;border:1.5px solid #B9BFCB;border-radius:50%;font-size:9.5px;font-weight:700;color:#8A90A0;
     font-family:'Fraunces',serif;font-style:italic;cursor:pointer;vertical-align:-3px;margin-left:4px}
   .info-i:hover{border-color:var(--navy);color:var(--navy)}
-  .dome-cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .dome-cap{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.45}
   .dome-cap b{color:var(--ink)}
   .krow{display:flex;gap:11px;padding:16px 22px 4px;align-items:flex-start}
   .kcard{flex:1;border-radius:18px;padding:16px 16px 15px;box-shadow:0 10px 24px rgba(14,29,62,.12)}
@@ -151,7 +156,7 @@
   .kcard .s{font-size:11px;margin-top:6px;line-height:1.35;opacity:.8}
   .kc-c{background:var(--navy);color:#fff}
   .kc-c .k{color:var(--gold-soft)}
-  .kc-g{background:#FBF0D6;border:1px solid #F0DFAE;margin-top:26px}
+  .kc-g{background:#FBF0D6;border:1px solid #F0DFAE}
   .kc-g .k{color:#8a6a12}
   .kc-g .v{color:#B4540A}
   .kc-g .s{color:#8a6a12}
@@ -171,12 +176,12 @@
     font-size:14px;font-weight:700;border-radius:13px;padding:14px;cursor:pointer}
   .sec{padding:12px 22px 0}
   .sec h3{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
-  .opt{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;
+  .opt{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;min-height:104px;box-sizing:border-box;
     margin-bottom:8px;display:flex;gap:12px;align-items:center;transition:all .18s}
   .opt.on{border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,169,46,.22)}
   .opt .name{font-size:14.5px;font-weight:600}
-  .opt .desc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
-  .opt .impact{font-size:12px;font-weight:700;margin-top:5px;color:var(--good)}
+  .opt .desc{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .opt .impact{font-size:12px;font-weight:700;margin-top:5px;color:var(--good);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .opt .rside{flex:none;display:flex;align-items:center}
   .opt{position:relative} .opt .name{padding-right:56px}
   .opt .ptbig{position:absolute;top:10px;right:12px;font-size:10.5px;font-weight:800;color:var(--navy);background:var(--gold);border-radius:8px;
@@ -444,7 +449,7 @@
   .foot p{font-size:10.5px;color:var(--muted);line-height:1.5}
 
   /* ---------- FLOATING NAV ---------- */
-  .nav{position:absolute;left:18px;right:18px;bottom:18px;background:var(--navy);border-radius:22px;
+  .nav{position:absolute;left:18px;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));background:var(--navy);border-radius:22px;
     display:flex;padding:8px;box-shadow:0 12px 30px rgba(14,29,62,.35);z-index:5}
   .nav button{flex:1;border:0;background:transparent;border-radius:15px;padding:9px 2px 8px;cursor:pointer;
     display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit;transition:background .18s}
@@ -643,17 +648,17 @@
         <h3>Raise your score</h3>
         <div class="opt" id="o-flood" data-rec="flood" style="cursor:pointer">
           <div style="flex:1"><div class="name">Add flood coverage</div>
-          <div class="desc">Your homeowners policy doesn't cover flood. NFIP insures up to $250k.</div>
+          <div class="desc">Homeowners excludes flood — NFIP insures up to $250k.</div>
           <div class="impact" id="impFlood">+ $250k covered</div></div>
           <div class="rside"><span class="ptbig num" id="ptFlood">+18 pts</span><button class="recbtn" data-act="flood">Get covered</button></div></div>
         <div class="opt" data-rec="savings" style="cursor:pointer">
           <div style="flex:1"><div class="name" id="nmSavings">Connect your savings</div>
-          <div class="desc">Link a bank account so your reserves are verified — cash counts against every peril, deductibles included.</div>
+          <div class="desc">Verify your reserves — cash counts against every peril.</div>
           <div class="impact" id="impSavings">$60k reported · not yet verified</div></div>
           <div class="rside"><span class="ptbig num" id="ptSavings">+4 pts</span><button class="recbtn" data-act="savings">Connect account</button></div></div>
         <div class="opt" data-rec="harden" style="cursor:pointer">
           <div style="flex:1"><div class="name">Harden your home</div>
-          <div class="desc">Roof, openings, defensible space — points earned per fix completed.</div>
+          <div class="desc">Roof, openings, defensible space — points per fix.</div>
           <div class="impact" id="impHarden">0 of 3 done</div></div>
           <div class="rside"><span class="ptbig num" id="ptHarden">+12 pts</span><button class="recbtn" data-act="harden">Open checklist</button></div></div>
       </div>
@@ -1001,7 +1006,7 @@
         <div style="background:linear-gradient(135deg,#0E1D3E,#1d3059);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:10px">
           <span style="width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 1.4s infinite;flex:none"></span>
           <div style="flex:1"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:11px">✦</span><span style="font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#E8C56E">AI agent</span></div>
-          <div style="font-size:12px;font-weight:700;color:#fff;margin-top:2px">Application prepared — 41 fields completed from your vault</div>
+          <div data-aihdr style="font-size:12px;font-weight:700;color:#fff;margin-top:2px">Application prepared — 41 fields completed from your vault</div>
           <div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:1px">Nothing is submitted until you review and press submit below</div></div>
         </div>
       </div>
@@ -1424,7 +1429,7 @@
     <div class="amh"><div class="amn" id="amName2">Jonathon Nostrant</div><div class="ame" id="amEmail2">j@aidfinder.com</div></div>
     <div class="amrow" id="amMsgs" style="display:none"><svg class="ami" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Messages<span id="amMsgsCount" style="margin-left:auto;min-width:17px;height:17px;border-radius:9px;background:#C64B33;color:#fff;font-size:10px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 5px">2</span></div>
     <div class="amrow" id="amSettings"><svg class="ami" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>Account settings</div>
-    <div class="amrow" id="amVault"><svg class="ami" viewBox="0 0 24 24"><path d="M5 4h9l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M14 4v5h5"/></svg>Document vault</div>
+    <div class="amrow" id="amVault"><svg class="ami" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="9.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.2" r="1.4"/></svg>Document vault</div>
     <div class="amrow out" id="amOut"><svg class="ami" viewBox="0 0 24 24" style="stroke:#B4540A"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4"/><path d="M15 8l4 4-4 4M19 12H9"/></svg>Sign out</div>
   </div>
 
@@ -1621,8 +1626,8 @@
     ARC.style.strokeDashoffset=LEN*(1-r.pct);
     const isTotal=D[state.disaster].factor>=0.95;
     $("domeCap").innerHTML = pct>=100
-      ? "your coverage is enough to pay <b>100%</b> of this "+(isTotal?"total-loss ":"")+"scenario"
-      : "your coverage pays <b>"+pct+"%</b> of this "+(isTotal?"total-loss ":"")+"scenario";
+      ? "Your coverage pays <b>100%</b> of this "+(isTotal?"total-loss ":"")+"scenario."
+      : "Your coverage pays <b>"+pct+"%</b> of this "+(isTotal?"total-loss ":"")+"scenario.";
     // home tab — readiness score: risk-weighted coverage across all perils (70), protection (15), documents (15)
     const funded=Math.round(r.pct*100);
     const W=computeWeighted();
@@ -1757,6 +1762,7 @@
   const tabs={home:"tab-home",risk:"tab-risk",ready:"tab-ready",tips:"tab-tips",coverage:"tab-coverage",vault:"tab-vault",settings:"tab-settings",name:"tab-name",creds:"tab-creds"};
   let currentView="home";
   function go(name){
+    if(name!==currentView) state.prevView=currentView;
     currentView=name;
     document.querySelectorAll(".tab").forEach(t=>t.classList.remove("on"));
     $(tabs[name]).classList.add("on");
@@ -2055,7 +2061,7 @@
       el.className="doc"+(doc.done?" done":"");
       el.innerHTML='<div class="dchk"></div><div style="flex:1"><div class="dn">'+doc.n+'</div>'
         +'<div class="dd">'+(doc.done?'<span style="color:#1E5A41;font-weight:700">Added '+doc.date+'</span> · tap to view or update':doc.d)+'</div></div>'
-        +(doc.done?'<span class="chevr" style="border-color:#8FBFA3;flex:none"></span>':'<span style="flex:none;font-size:10.5px;font-weight:700;color:#8a6a12;background:#FBF3DF;border-radius:999px;padding:3px 9px">+2 pts</span><span class="chevr" style="border-color:#D9CFA8;flex:none;margin-left:6px"></span>');
+        +(doc.done?'<span class="chevr" style="border-color:#8FBFA3;flex:none"></span>':(state.recovery?'<span class="chevr" style="border-color:#D9CFA8;flex:none"></span>':'<span style="flex:none;font-size:10.5px;font-weight:700;color:#8a6a12;background:#FBF3DF;border-radius:999px;padding:3px 9px">+2 pts</span><span class="chevr" style="border-color:#D9CFA8;flex:none;margin-left:6px"></span>'));
       el.addEventListener("click",()=>openDoc(i));
       list.appendChild(el);
     });
@@ -2063,7 +2069,7 @@
   buildDocs();
   $("vaultRow").addEventListener("click",()=>go("vault"));
   $("polRow").addEventListener("click",()=>go("coverage"));
-  $("vaultBack").addEventListener("click",()=>go("ready"));
+  $("vaultBack").addEventListener("click",()=>{const p=state.prevView; go(p&&p!=="vault"?p:"ready");});
 
   // ---- contextual chat ----
   // Context payload = where you are + your state + what would help next.
@@ -3119,7 +3125,7 @@
   function dcDone(doc,what){
     doc.done=true; doc.date=todayStr(); doc.what=what;
     $("dcTitle").textContent="Secured ✓";
-    $("dcBody").innerHTML='<div style="background:#EAF3EE;border:1px solid #CBE2D5;border-radius:13px;padding:13px 15px;margin-top:12px"><div style="font-size:13px;font-weight:700;color:#1E5A41">'+doc.n+' — added '+doc.date+'</div><div style="font-size:11.5px;color:var(--muted);margin-top:4px">'+what+' · encrypted, off your devices · +2 readiness pts earned</div></div>';
+    $("dcBody").innerHTML='<div style="background:#EAF3EE;border:1px solid #CBE2D5;border-radius:13px;padding:13px 15px;margin-top:12px"><div style="font-size:13px;font-weight:700;color:#1E5A41">'+doc.n+' — added '+doc.date+'</div><div style="font-size:11.5px;color:var(--muted);margin-top:4px">'+what+' · encrypted, off your devices'+(state.recovery?'':' · +2 readiness pts earned')+'</div></div>';
     $("dcPrimary").style.display="block";
     $("dcPrimary").textContent="Done";
     $("dcPrimary").onclick=()=>{$("dcBg").classList.remove("show");};
@@ -3327,6 +3333,7 @@
       state.prop=0;
       $("dsBg").classList.remove("show");
       go("home");
+      buildDocs();
       render();
     };
     $("dsLater").onclick=()=>{
@@ -3350,7 +3357,7 @@
     {t:"Establish your verified damage number",d:"Licensed contractor estimate · industrial hygienist for smoke & toxins · retrospective appraiser. Every claim keys off this number.",st:"todo",cta:"Add your estimates in Damage",act:()=>{go("risk");setTimeout(()=>{const el=$("rdEstCard");if(el)el.scrollIntoView({behavior:"smooth",block:"start"});},120);},v:{t:"Getting to a defensible damage number",dur:"1:58",sub:"Why every program keys off one number, and the three professionals who make it stick."}},
     {t:"Watch the declarations - there are two",d:"FEMA needs the President. SBA has its own declaration with a much lower bar - about 25 damaged properties in a county - so it often turns on when FEMA does not. We track both and start your deadline clocks the moment either flips.",st:"decl",act:null,v:{t:"FEMA vs SBA declarations, explained",dur:"1:47",sub:"Two different switches, two different clocks — and why one often flips without the other."}},
     {t:"Apply before the deadlines",d:"FEMA and SBA each give about 60 days from declaration. Your vault pre-fills both.",st:"locked",cta:"See the deductible play",act:()=>{goTip("deductible");},v:{t:"Applying before the deadlines",dur:"1:36",sub:"The 60-day clocks, what pre-filling saves you, and the deductible move most people miss."}},
-    {t:"Catch programs as they emerge",d:"State grants, property-tax relief, the IRS refund — help keeps appearing for months. We watch and alert.",st:"locked",cta:"See programs coming online",act:()=>{go("ready");setTimeout(()=>{const el=$("mSecNew");if(el)el.scrollIntoView({behavior:"smooth",block:"start"});},150);},v:{t:"The help that shows up months later",dur:"1:21",sub:"State grants, tax relief, and the IRS refund — recovery money keeps appearing long after the news moves on."}}
+    {t:"Catch programs as they emerge",d:"State grants, property-tax relief, the IRS refund — help keeps appearing for months. We watch and alert.",st:"locked",cta:"See programs coming online",act:()=>{go("ready");setTimeout(()=>scrollToSec("mSecNew"),150);},v:{t:"The help that shows up months later",dur:"1:21",sub:"State grants, tax relief, and the IRS refund — recovery money keeps appearing long after the news moves on."}}
   ];
   let recOpenStep=null;
   function perilOf(name,sz){
@@ -3429,6 +3436,7 @@
         }).join("");
       })()
       +'</div>';
+    alignSticky("recPanel");
     document.querySelectorAll(".recStepHead").forEach(el=>el.addEventListener("click",e=>{
       if(e.target.closest("#recDecl"))return;
       const i=+el.dataset.i;
@@ -3478,6 +3486,7 @@
       }
     });
     if(typeof updateAvBadge==="function")try{updateAvBadge();}catch(e){}
+    const vb=$("vaultBack"); if(vb){const sp=vb.querySelector("span:last-child"); if(sp) sp.textContent=on?"Back":"Readiness";}
     document.querySelectorAll(".top").forEach(t=>{
       let hb=t.querySelector(".topHelp");
       if(on&&!hb){
@@ -3515,6 +3524,33 @@
   }
   const REC_CHIP={0:["Not started","#FBF3DF","#8a6a12","#F0DFAE"],1:["Requested","#EDEFF3","#4A5468","#D6DAE2"],2:["Received ✓","#EAF3EE","#1E5A41","#CBE2D5"]};
   function chip(st,extra){const c=REC_CHIP[st];return '<span class="pbadge" style="background:'+c[1]+';color:'+c[2]+';border-color:'+c[3]+';cursor:pointer">'+(extra&&st===2?extra:c[0])+'</span>';}
+  function alignSticky(cid){
+    const c=$(cid); if(!c)return;
+    const bn=c.firstElementChild; if(!bn)return;
+    requestAnimationFrame(()=>{
+      const h=bn.offsetHeight;
+      Array.from(c.children).forEach(el=>{
+        if(el===bn)return;
+        const s=el.getAttribute("style")||"";
+        if(s.indexOf("position:sticky")>=0) el.style.top=(h-1)+"px";
+      });
+    });
+  }
+  // Scroll a section title to sit just below the sticky stack (banner + pinned card),
+  // measured live so the title is never hidden underneath it.
+  function scrollToSec(id){
+    const t=$(id); if(!t)return;
+    const sc=t.closest(".screen");
+    if(!sc){t.scrollIntoView({behavior:"smooth",block:"start"});return;}
+    const tab=t.closest(".tab");
+    let off=12;
+    if(tab)tab.querySelectorAll("[style*='position:sticky']").forEach(s=>{
+      if(s.offsetParent!==null&&!s.contains(t)&&!t.contains(s))off+=s.offsetHeight;
+    });
+    const y=t.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop - off;
+    sc.scrollTo({top:Math.max(0,y),behavior:"smooth"});
+  }
+
   function renderDamage(){
     const R=state.recovery; if(!R) return;
     R.d=R.d||{photos:0,contractor:0,hyg:0,appr:0,adj:0,mit:0};
@@ -3530,7 +3566,7 @@
     h+='<div style="background:#FDF8EE;border:1px solid #F0DFAE;border-radius:16px;padding:12px 15px;margin-bottom:12px;position:relative"><button id="rdAiX" aria-label="Dismiss" style="position:absolute;top:9px;right:9px;width:24px;height:24px;border-radius:50%;border:0;background:rgba(138,106,18,.1);color:#8a6a12;font-size:12px;cursor:pointer;padding:0;line-height:1">\u2715</button><div style="display:flex;align-items:center;gap:7px;padding-right:26px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex:none"><path d="M12 2l2.1 6.4L20 10l-5.9 1.6L12 18l-2.1-6.4L4 10l5.9-1.6L12 2z" fill="var(--gold)"/><path d="M19 15l.9 2.6L22.5 18l-2.6.9L19 21.5l-.9-2.6L15.5 18l2.6-.9L19 15z" fill="#E8C56E"/></svg><span style="font-size:12.5px;font-weight:700">Your home may look fine — and not be</span></div><div style="font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#8a6a12;margin-top:3px">AI insight · based on your peril and neighborhood damage</div><div style="font-size:11px;color:var(--muted);margin-top:3px;line-height:1.55">Smoke, soot, and toxins don\'t photograph. Homes that survived the fire line often need full remediation — don\'t waive an inspection or take a quick settlement before a hygienist tests. Three of your neighbors lost everything; standing isn\'t the same as safe.</div></div>';
     }
 
-    h+='<div style="position:sticky;top:52px;z-index:30;background:var(--cream);margin:0 -22px 8px;padding:6px 22px 8px"><div style="background:var(--navy);border-radius:16px;padding:14px 16px;color:#fff"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700;display:flex;align-items:center;gap:7px">'+(verified?'Verified damage <span class="pbadge" style="background:rgba(143,209,168,.16);color:#8FD1A8;border-color:rgba(143,209,168,.4)">Verified ✓</span>':'Estimated damage <span class="pbadge" style="background:rgba(224,169,46,.16);color:#E8C56E;border-color:rgba(224,169,46,.45)">Estimate</span>')+'</span><span class="num" style="font-family:\'Fraunces\',serif;font-size:22px;color:var(--gold)">'+(verified?"$1.74M":"≈$2.0M")+'</span></div>'
+    h+='<div style="position:sticky;top:52px;z-index:30;background:var(--cream);margin:0 -22px 10px;padding:10px 22px 12px"><div style="background:var(--navy);border-radius:16px;padding:14px 16px;color:#fff"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700;display:flex;align-items:center;gap:7px">'+(verified?'Verified damage <span class="pbadge" style="background:rgba(143,209,168,.16);color:#8FD1A8;border-color:rgba(143,209,168,.4)">Verified ✓</span>':'Estimated damage <span class="pbadge" style="background:rgba(224,169,46,.16);color:#E8C56E;border-color:rgba(224,169,46,.45)">Estimate</span>')+'</span><span class="num" style="font-family:\'Fraunces\',serif;font-size:22px;color:var(--gold)">'+(verified?"$1.74M":"≈$2.0M")+'</span></div>'
       +(verified
         ? CATS.map(c=>'<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:11.5px"><span style="color:rgba(255,255,255,.78)">'+c[0]+'</span><b class="num" style="color:#fff">'+c[1]+'</b></div>').join("")
           +'<div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:7px">Split the way programs count it — deductions and caps run per category, not in total.</div>'
@@ -3595,6 +3631,7 @@
 
     // D9/D10 — verified number with categories
     $("recDamage").innerHTML=h;
+    alignSticky("recDamage");
     const RSEED=[["hotel",289],["meals",46],["supplies",77],["gas",52],["meals",38],["pet",120],["hotel",289],["supplies",64]];
     function addReceipt(){
       const rc=R.d.rc;
@@ -3655,7 +3692,7 @@
     });
     key+='<span style="display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)"><span style="width:9px;height:9px;border-radius:3px;background:#E4E0D6;flex:none"></span>Unmet gap · <b class="num" style="color:#B4540A">'+fmt(gapAmt)+'</b></span></div>';
 
-    const stackCard='<div style="position:sticky;top:52px;z-index:30;background:var(--cream);margin:0 -22px 8px;padding:6px 22px 8px"><div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 16px">'
+    const stackCard='<div style="position:sticky;top:52px;z-index:30;background:var(--cream);margin:0 -22px 10px;padding:10px 22px 12px"><div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 16px">'
       +'<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:700">Making you whole</span><span class="num" style="font-family:\'Fraunces\',serif;font-size:19px">'+(verified?"$1.74M":"\u2248$2.0M")+'</span></div>'
       +'<div style="font-size:10.5px;color:var(--muted);margin-top:2px">'+(verified?"Verified damage":"Estimated damage")+' \u00b7 solid = money secured \u00b7 faded = still in motion</div>'
       +bar+key
@@ -3852,6 +3889,7 @@
         return w;
       })();
 
+    alignSticky("recMoney");
     document.querySelectorAll(".mRow").forEach(el=>el.addEventListener("click",()=>{
       const i=+el.dataset.i;
       R.m.open=(R.m.open===i)?null:i;
@@ -3878,8 +3916,7 @@
     document.querySelectorAll(".sbVidCard").forEach(el=>el.addEventListener("click",e=>{e.stopPropagation();openSbaReview();}));
     document.querySelectorAll(".mNav").forEach(el=>el.addEventListener("click",e=>{
       e.stopPropagation();
-      const t=$(el.dataset.sec);
-      if(t)t.scrollIntoView({behavior:"smooth",block:"start"});
+      scrollToSec(el.dataset.sec);
     }));
     if(typeof updateAvBadge==="function")try{updateAvBadge();}catch(e){}
     document.querySelectorAll(".mClaim").forEach(el=>el.addEventListener("click",e=>{
@@ -4052,27 +4089,62 @@
   function openSbaReview(){
     const R=state.recovery; if(!R)return;
     R.m=R.m||{claim:0,fema:0,sba:0};
+    R.m.sbaFix=R.m.sbaFix||{income:false,household:false};
+    const fx=R.m.sbaFix;
     const verified=R.d&&R.d.contractor===2;
     const need=verified?1740000:2000000;
     const insPaid=(R.m.claims||[]).reduce((a,c)=>a+(c.st===2?(c.k==="fair"?600000:38000):0),0);
     const femaGot=(R.decl==="on"&&R.m.fema===2)?43600:0;
     const unmet=Math.max(need-insPaid-femaGot-60000,0);
     const ask=Math.min(500000,unmet||500000);
+    const needsN=(fx.income?0:1)+(fx.household?0:1);
     const FF=[
-      ["Disaster","Palisades Fire \u00b7 SBA declaration \u00b7 Los Angeles County"],
-      ["Borrower","Jonathon N. \u00b7 SSN \u2022\u2022\u2022-\u2022\u2022-4821 \u00b7 (310) 555-0142"],
-      ["Damaged property","952 Las Lomas Ave, Pacific Palisades, CA 90272 \u00b7 primary residence"],
-      ["Your loss",(verified?"$1.74M verified \u00b7 contractor estimate attached":"\u2248$2.0M estimated \u00b7 verified number strengthens this")],
-      ["Insurance recoveries",(insPaid>0?fmt(insPaid)+" received \u2014 disclosed \u00b7 no duplication":"Claims filed \u00b7 recoveries disclosed as paid")],
-      ["Loan requested","<b>"+fmt(ask)+"</b> \u2014 your unmet gap \u00b7 up to $500k home + $100k contents"],
-      ["Terms","\u2248 2.5% fixed \u00b7 up to 30 years \u00b7 first 12 months can defer"],
-      ["Financials","Income &amp; obligations imported \u00b7 Chase \u2022\u2022\u2022\u20226612"],
-      ["Certifications","Truthful statement \u00b7 credit check authorization \u00b7 intent to rebuild"]
+      {l:"Disaster",v:"Palisades Fire \u00b7 SBA declaration \u00b7 Los Angeles County"},
+      {l:"Borrower",v:"Jonathon N. \u00b7 SSN \u2022\u2022\u2022-\u2022\u2022-4821 \u00b7 (310) 555-0142"},
+      {l:"Damaged property",v:"952 Las Lomas Ave, Pacific Palisades, CA 90272 \u00b7 primary residence"},
+      {l:"Household",v:fx.household?"4 occupants \u00b7 confirmed \u2713":"Vault shows 3 occupants \u2014 filed before your daughter was born",fix:"household",cand:"Update to 4 occupants"},
+      {l:"Your loss",v:(verified?"$1.74M verified \u00b7 contractor estimate attached":"\u2248$2.0M estimated \u00b7 verified number strengthens this")},
+      {l:"Insurance recoveries",v:(insPaid>0?fmt(insPaid)+" received \u2014 disclosed \u00b7 no duplication":"Claims filed \u00b7 recoveries disclosed as paid")},
+      {l:"Loan requested",v:"<b>"+fmt(ask)+"</b> \u2014 your unmet gap \u00b7 up to $500k home + $100k contents"},
+      {l:"Terms",v:"\u2248 2.5% fixed \u00b7 up to 30 years \u00b7 first 12 months can defer"},
+      {l:"Financials",v:fx.income?"2025 income confirmed \u2713 \u00b7 Chase \u2022\u2022\u2022\u20226612":"Income on file is from your 2024 return \u2014 SBA needs current year",fix:"income",cand:"Confirm 2025 income imported from your bank"},
+      {l:"Certifications",v:"Truthful statement \u00b7 credit check authorization \u00b7 intent to rebuild"}
     ];
-    $("sbaForm").innerHTML=FF.map(r=>'<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #F4F1EA"><span style="width:104px;flex:none;font-size:10.5px;font-weight:700;color:var(--muted)">'+r[0]+'</span><span style="flex:1;font-size:11.5px">'+r[1]+'</span></div>').join("");
+    const hdr=$("sbaBg").querySelector("[data-aihdr]");
+    if(hdr)hdr.innerHTML=needsN>0
+      ?(41-needsN)+" of 41 fields from your vault \u2014 <b style=\"color:#E8C56E\">"+needsN+" need"+(needsN===1?"s":"")+" you</b>"
+      :"41 of 41 fields complete \u2014 all from your vault \u2713";
+    $("sbaForm").innerHTML=FF.map(r=>{
+      const flagged=r.fix&&!fx[r.fix];
+      let row='<div style="display:flex;gap:10px;padding:8px '+(flagged?'10px':'0')+';border-bottom:1px solid #F4F1EA;'+(flagged?'background:#FDF8EE;border:1px solid #F0DFAE;border-radius:11px;margin:5px 0;':'')+'">'
+        +'<span style="width:104px;flex:none;font-size:10.5px;font-weight:700;color:'+(flagged?'#8a6a12':'var(--muted)')+'">'+r.l+(flagged?'<span style="display:block;font-size:8.5px;letter-spacing:.06em;color:#B4540A;margin-top:2px">NEEDS YOU</span>':'')+'</span>'
+        +'<div style="flex:1"><span style="font-size:11.5px;'+(flagged?'color:#7a5a10;':'')+'">'+r.v+'</span>';
+      if(flagged){
+        row+='<div style="display:flex;gap:6px;margin-top:7px">'
+          +'<button class="sbFixOk" data-f="'+r.fix+'" style="border:0;background:#1E5A41;color:#fff;font-family:inherit;font-size:10.5px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer">'+r.cand+' \u2713</button>'
+          +'<button class="sbFixVault" style="border:1.5px solid var(--line);background:#fff;color:var(--ink);font-family:inherit;font-size:10.5px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer">Edit in vault \u2192</button>'
+          +'</div>';
+      }
+      row+='</div></div>';
+      return row;
+    }).join("");
+    document.querySelectorAll(".sbFixOk").forEach(el=>el.addEventListener("click",e=>{
+      e.stopPropagation();
+      fx[el.dataset.f]=true;
+      openSbaReview();
+    }));
+    document.querySelectorAll(".sbFixVault").forEach(el=>el.addEventListener("click",e=>{
+      e.stopPropagation();
+      $("sbaBg").classList.remove("show");
+      go("vault");
+    }));
     const sb=$("sbaSubmit");
-    const open=R.decl!=="pending";
-    if(open){
+    const declOpen=R.decl!=="pending";
+    if(needsN>0){
+      sb.disabled=true;
+      sb.style.background="var(--cream)"; sb.style.color="var(--muted)"; sb.style.cursor="default";
+      sb.textContent="Resolve "+needsN+" field"+(needsN===1?"":"s")+" above to submit";
+    } else if(declOpen){
       sb.disabled=false;
       sb.style.background="#1E5A41"; sb.style.color="#fff"; sb.style.cursor="pointer";
       sb.textContent="Submit my application to SBA";
@@ -4247,7 +4319,7 @@
   });
   $("mmPrep").addEventListener("click",()=>{
     $("modeMenu").classList.remove("show");
-    if(state.recovery){state.recovery=null;renderRecovery();render();}
+    if(state.recovery){state.recovery=null;buildDocs();renderRecovery();render();}
   });
 
   // avatar menu
