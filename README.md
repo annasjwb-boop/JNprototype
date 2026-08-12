@@ -1,40 +1,28 @@
-# AidFinder — Gap Simulator Prototype
+# AidFinder Gap Simulator — demo deploy (for Anna)
 
-A single-file, self-contained HTML prototype of the AidFinder experience: coverage
-gap simulation, policy connection, readiness scoring, damage documentation, and
-FEMA/SBA application flows.
+Single-file HTML prototype + assets. No build step, no framework, no server code.
 
-## Running it
+## Deploy (2 minutes)
+1. Go to vercel.com/new → drag this whole folder in (or `vercel deploy` from inside it).
+2. All 6 files must sit at the project ROOT — index.html references /fema-fill.mp4, /fema-poster.jpg, and the icons by absolute path.
+3. Optional: point demo.aidfinder.com at the deployment (Vercel → Settings → Domains).
 
-No build step, no dependencies, no server required. Open `index.html` in a browser.
+## Files
+- index.html         — the entire app (762 KB, self-contained except the two video assets)
+- fema-fill.mp4      — FEMA form-fill demo clip (h264; external because iOS Safari can't play data-URI video)
+- fema-poster.jpg    — poster frame for the video player
+- apple-touch-icon.png — home-screen icon (navy / white AidFinder symbol)
+- icon-512.png, icon-1024.png — favicon / larger icon
 
-If you'd rather serve it locally:
+## iPhone demo setup (Jonathon's flow)
+1. Open the deployed URL in Safari once on WiFi (caches everything).
+2. Share → Add to Home Screen → launches chromeless, full-screen, native-feeling.
+3. After ANY redeploy: delete the home-screen icon and re-add it (iOS caches aggressively), then force-quit and relaunch.
 
-```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
-```
+## Testing notes
+- State is in-memory only; reload = clean slate (intentional for demos).
+- Three properties: Palisades (fire), Reno (wind/flood), Scottsdale (heat). Recovery mode: tap the fire banner on Palisades → "Enter recovery".
+- Score demo beat: Readiness tab → Add a policy → "Earthquake coverage · CEA" → activate → score 30→38. Flood beat belongs on Reno (41→46), not Palisades (by design — risk-weighted).
+- Known placeholders flagged for later: area-average benchmarks (52/47/44) are illustrative; FEMA $43.6k cap hardcoded (verify annually).
 
-## What's inside
-
-Everything lives in `index.html` — markup, styles, script, and all imagery as
-embedded base64. The only external request is to Google Fonts (DM Sans, Fraunces).
-That means the file can be emailed, dropped on a static host, or opened straight
-from disk and it will still work.
-
-Flows covered in the prototype include:
-
-- Coverage gap breakdown — how insurance, FEMA, SBA, and out-of-pocket stack
-  against a rebuild estimate
-- Policy connection (carrier link, add-a-policy, flood/NFIP quote confirmation)
-- Readiness score and the actions that raise it
-- Damage walkthrough and claim filing status
-- FEMA and SBA application tracking
-- Guide library, community Q&A, and messages
-- Account settings, properties, and language
-
-## Publishing
-
-To put this on a URL, enable GitHub Pages in **Settings → Pages**, source
-**Deploy from a branch**, branch `main`, folder `/ (root)`. The prototype will be
-served at `https://annasjwb-boop.github.io/JNprototype/`.
+Built/tested against iPhone 17 Pro Safari + Chrome. Last regression: all interactive flows pass, zero console errors.
